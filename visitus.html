@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indonesian Tourism</title>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <div class="nav">
+      <a href="./index.html">
+        <div class="left">
+          <img src="./img/logo.png" alt="" class="logo" />
+          <p>Indonesian Tourism</p>
+        </div>
+      </a>
+      <div class="menu">
+        <a class="menu-content" href="./culture.html">Culture</a>
+        <a class="menu-content" href="./places.html">Places</a>
+        <a class="menu-content" href="./hotels.html">Hotels</a>
+      </div>
+      <div class="visits">
+        <a class="v-button" href="./visitus.html">Visit Us</a>
+      </div>
+    </div>
+    <div class="visit-us-title">
+      <h1>Visit Us</h1>
+      <p>
+        Make an transaction for appointment to visit us here, including the
+        places.
+      </p>
+    </div>
+
+    <div class="form-visits">
+      <form id="visitForm" onsubmit="handleSubmit(event)">
+        <div class="form-contain">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required />
+        </div>
+        <div class="form-contain">
+          <label for="phone">Phone Number</label>
+          <input type="number" name="phone" id="phone" required />
+        </div>
+        <div class="form-contain">
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" required />
+        </div>
+        <div class="form-contain">
+          <label for="places">Places</label>
+          <select id="places" name="places" required>
+            <option value="raung">Gunung Raung</option>
+            <option value="toba">Danau Toba</option>
+            <option value="rinjani">Gunung Rinjani</option>
+            <option value="jayawijaya">Gunung Jayawijaya</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div class="results-visits"></div>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const form = document.getElementById("visitForm");
+        const name = form.name.value;
+        const phone = form.phone.value;
+        const date = form.date.value;
+        const place = form.places.value;
+
+        let cost = 0;
+        switch (place) {
+          case "raung":
+            cost = 800000;
+            break;
+          case "toba":
+            cost = 3000000;
+            break;
+          case "rinjani":
+            cost = 1500000;
+            break;
+          case "jayawijaya":
+            cost = 5000000;
+            break;
+        }
+
+        const resultDiv = document.querySelector(".results-visits");
+        resultDiv.innerHTML = `
+                <div class="results-content">
+                <p>Here's your appointment</p>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Phone Number:</strong> ${phone}</p>
+                <p><strong>Date:</strong> ${date}</p>
+                <p><strong>Place:</strong> ${
+                  place.charAt(0).toUpperCase() + place.slice(1)
+                }</p>
+                <p><strong>Cost:</strong> IDR ${cost.toLocaleString()}</p>
+                <p>Please transfer to BCA Account 123222xxx</p>
+                </div>
+            `;
+      }
+    </script>
+  </body>
+</html>
